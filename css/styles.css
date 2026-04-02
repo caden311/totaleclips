@@ -639,16 +639,15 @@ img {
     width: 100%;
     flex-direction: column;
     background-color: var(--color-dark);
-    padding: 24px 0;
+    padding: 0;
     gap: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.3s ease;
   }
 
   .nav-links.active {
     max-height: 400px;
-    padding: 24px 0;
   }
 
   .nav-links li {
