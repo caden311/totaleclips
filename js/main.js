@@ -39,3 +39,26 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.animate-on-scroll').forEach(el => {
   observer.observe(el);
 });
+
+// Book Call Modal
+const bookModal = document.getElementById('bookModal');
+const bookModalClose = document.getElementById('bookModalClose');
+
+document.querySelectorAll('.book-call-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    bookModal.classList.add('active');
+    navLinks.classList.remove('active');
+    navToggle.classList.remove('active');
+  });
+});
+
+bookModalClose.addEventListener('click', () => {
+  bookModal.classList.remove('active');
+});
+
+bookModal.addEventListener('click', (e) => {
+  if (e.target === bookModal) {
+    bookModal.classList.remove('active');
+  }
+});

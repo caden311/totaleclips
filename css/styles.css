@@ -577,6 +577,103 @@ img {
   opacity: 0.8;
 }
 
+/* ===== Book Call Modal ===== */
+.book-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.book-modal-overlay.active {
+  display: flex;
+}
+
+.book-modal {
+  background: var(--color-light);
+  border-radius: 16px;
+  padding: 40px 36px 36px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-body);
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition);
+}
+
+.book-modal-close:hover {
+  color: var(--color-accent);
+}
+
+.book-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--color-dark);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.book-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.book-modal-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 10px;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.book-modal-option:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.book-modal-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-dark);
+}
+
+.book-modal-phone {
+  font-size: 0.95rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
 /* ===== Animations ===== */
 .animate-on-scroll {
   opacity: 0;
