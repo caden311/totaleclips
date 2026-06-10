@@ -16,5 +16,5 @@ A modern website for a 40-year-old neighborhood hair salon in Smithfield, Utah.
 
 ## Read More
 
-- [Building a Website for a 40-Year-Old Hair Salon](https://vientapps.com/blog/building-total-eclips/) - the full devlog
-- Built by [Vient Apps](https://vientapps.com). More client work at [vientapps.com/projects](https://vientapps.com/projects).
+- [Building a Website for a 40-Year-Old Hair Salon](https://vient.org/blog/building-total-eclips/) - the full devlog
+- Built by [Vient](https://vient.org). More client work at [vient.org/projects](https://vient.org/projects).
