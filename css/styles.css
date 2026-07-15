@@ -312,6 +312,45 @@ img {
   line-height: 1.7;
 }
 
+/* ===== Communities Served ===== */
+.communities {
+  background-color: #fff;
+  text-align: center;
+}
+
+.communities-lead {
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.community-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  padding: 0;
+}
+
+.community-list li {
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  padding: 10px 22px;
+  transition: var(--transition);
+}
+
+.community-list li:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+}
+
 /* ===== About ===== */
 .about {
   background-color: var(--color-light);
