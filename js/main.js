@@ -1,64 +1,62 @@
-// Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
+/* Total E'Clips Salon — interaction */
 
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  navToggle.classList.toggle('active');
-});
+(function () {
+  'use strict';
 
-// Close mobile nav on link click
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    navToggle.classList.remove('active');
-  });
-});
+  /* --- Mobile nav ------------------------------------------------------ */
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('nav');
 
-// Navbar background on scroll
-const navbar = document.getElementById('navbar');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  function closeNav() {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
   }
-});
 
-// Scroll-triggered fade-in animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    }
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-  observer.observe(el);
-});
-
-// Book Call Modal
-const bookModal = document.getElementById('bookModal');
-const bookModalClose = document.getElementById('bookModalClose');
-
-document.querySelectorAll('.book-call-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    bookModal.classList.add('active');
-    navLinks.classList.remove('active');
-    navToggle.classList.remove('active');
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) closeNav();
   });
-});
 
-bookModalClose.addEventListener('click', () => {
-  bookModal.classList.remove('active');
-});
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeNav();
+  });
 
-bookModal.addEventListener('click', (e) => {
-  if (e.target === bookModal) {
-    bookModal.classList.remove('active');
+  /* --- Header state on scroll ------------------------------------------ */
+  var head = document.getElementById('siteHead');
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      head.classList.toggle('is-stuck', window.scrollY > 40);
+      ticking = false;
+    });
   }
-});
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* --- Scroll reveals --------------------------------------------------- */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('.reveal');
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    targets.forEach(function (el) { el.classList.add('is-in'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  targets.forEach(function (el) { io.observe(el); });
+})();
